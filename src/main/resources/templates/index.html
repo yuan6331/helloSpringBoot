@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js" charset="UTF-8">
+</script>
+<script type="text/javascript">
+	function login() {
+		var param = {
+			type : "get",
+			url : "loginAction",
+			data : {
+				customId : $("#username").val(),
+				customPwd : $("#password").val()
+			},
+			success : function(r) {
+				if (r == 'right') {
+					document.location = 'http://localhost:8080/success';
+				} else {
+					alert("wrong!")
+				}
+			}
+		}
+		$.ajax(param);
+	}
+</script>
+<title>登录页面</title>
+</head>
+<body>
+</head>
+<center>
+	<form th:action="loginAction" th:method="get">
+		账号：<input th:type='text' th:name='username' th:placeholder='请输入账号...'><br>
+		密码：<input th:type='text' th:name='password' th:placeholder='请输入密码...'><br>
+		<input th:type="button" th:value="LOGIN" th:onclick=login()>
+	</form>
+</center>
+</body>
+</html>
