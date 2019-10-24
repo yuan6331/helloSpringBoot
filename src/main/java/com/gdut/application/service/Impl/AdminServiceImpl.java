@@ -21,16 +21,17 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public boolean checkUser(String username,String password) {
-		Admin user=adminMapper.findUser();
+	public String checkUser(String username,String password,HttpServletRequest request) {
+		Admin user=adminMapper.checkUser(username);
+		request.setAttribute("user",user);
 		if(username!=null&&password!=null) {
 			if(user.getusername()==username&&user.getPassword()==password) {
-				return true;
+				return "right";
 			}else{
-				return false;
+				return "wrong";
 			}
 		}
-		 return true;
+		 return "empty";
 	}
 
 }

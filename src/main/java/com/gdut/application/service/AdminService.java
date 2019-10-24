@@ -10,5 +10,5 @@ public interface AdminService {
 	
 	Admin findUser(HttpServletRequest requset);
 	
-	boolean checkUser(String username,String password);
+	String checkUser(String username,String password,HttpServletRequest request);
 }

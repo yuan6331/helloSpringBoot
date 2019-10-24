@@ -6,12 +6,16 @@
 </script>
 <script type="text/javascript">
 	function login() {
+		alert("login");
+		alert($("#user"));
+		alert($("#username"));
+		alert($("#username").val());
 		var param = {
 			type : "get",
 			url : "loginAction",
 			data : {
-				customId : $("#username").val(),
-				customPwd : $("#password").val()
+				username : $("#username").val(),
+				password : $("#password").val()
 			},
 			success : function(r) {
 				if (r == 'right') {
