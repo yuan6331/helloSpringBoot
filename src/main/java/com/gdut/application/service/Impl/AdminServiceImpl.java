@@ -11,32 +11,29 @@ import com.gdut.application.mapper.AdminMapper;
 import com.gdut.application.service.AdminService;
 
 @Service
-public class AdminServiceImpl implements AdminService{
-	
+public class AdminServiceImpl implements AdminService {
+
 	@Autowired
 	AdminMapper adminMapper;
-	
+
 	@Override
 	public Admin findUser(HttpServletRequest requset) {
 		return adminMapper.findUser();
 	}
 
 	@Override
-	public String checkUser(String username,String password,HttpServletRequest request) {
-		Admin user=adminMapper.checkUser(username);
-		System.out.println("username: "+user.getusername());
-		System.out.println("password: "+user.getPassword());
-		request.setAttribute("user",user);
-		System.out.println("service: "+username);
-		System.out.println("service: "+password);
-		if(username!=null&&password!=null) {
-			if(user.getusername()==username&&user.getPassword()==password) {
-				return "right";
-			}else{
-				return "wrong";
-			}
+	public String checkUser(String username, String password, HttpServletRequest request) {
+		Admin user = adminMapper.checkUser(username);
+		if (username.equals(null) || "".equals(username) || password.equals(null) || "".equals(password)) {
+			return "none";
+		}else if(user==null) {
+			return "wrong username";
 		}
-		 return "empty";
+		if (username.equals(user.getusername()) && password.equals(user.getPassword())) {
+			request.setAttribute("user", user);
+			return "right";
+		}
+		return "wrong account";
 	}
 
 }

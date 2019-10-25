@@ -28,7 +28,6 @@ public class MyController {
 	@GetMapping("/loginAction")
 	public String login(@Param(value = "username") String username,@Param(value = "password") String password,HttpServletRequest request) {
 		String flag = adminService.checkUser(username,password, request);
-		System.out.println("controller"+username);
 		return flag;
 	}
 	
