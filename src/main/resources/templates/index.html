@@ -6,13 +6,10 @@
 </script>
 <script type="text/javascript">
 	function login() {
-		alert("login");
-		alert($("#user"));
 		alert($("#username"));
-		alert($("#username").val());
 		var param = {
 			type : "get",
-			url : "loginAction",
+			url : "http://localhost:8080/loginAction",
 			data : {
 				username : $("#username").val(),
 				password : $("#password").val()
@@ -20,8 +17,12 @@
 			success : function(r) {
 				if (r == 'right') {
 					document.location = 'http://localhost:8080/success';
-				} else {
+				} else if(r=='wrong') {
 					alert("wrong!")
+				}else if(r=='empty'){
+					alert("empty!")
+				}else{
+					alert("*****!")
 				}
 			}
 		}
@@ -33,11 +34,30 @@
 <body>
 </head>
 <center>
-	<form th:action="loginAction" th:method="get">
-		账号：<input th:type='text' th:name='username' th:placeholder='请输入账号...'><br>
-		密码：<input th:type='text' th:name='password' th:placeholder='请输入密码...'><br>
+	<!-- <form th:action="loginAction" th:method="get">
+		账号：<input type='text' th:field="username" th:placeholder='请输入账号...' /><br>
+		密码：<input type='text' th:field="password" th:placeholder='请输入密码...' /><br>
 		<input th:type="button" th:value="LOGIN" th:onclick=login()>
-	</form>
+	</form> -->
+	<form action="#" th:action="@{/loginAction}" th:object="${user}" method='get'>
+        <p>账号：<input type="text" th:field="*{username}" /></p>
+        <p>密码：<input type="text" th:field="*{password}" /></p>
+        <p><input th:type="button" th:value="LOGIN" th:onclick=login() /></p>
+    </form>
 </center>
+
+ 	<!-- <form action="#" th:action="@{/greeting}" th:object="${greeting}" method="post">
+        <p>Id: <input type="text" th:field="*{id}" /></p>
+        <p>Message: <input type="text" th:field="*{content}" /></p>
+        <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+    </form> -->
+    
+    
+    
+    
+    
+    
+    
+    
 </body>
 </html>

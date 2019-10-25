@@ -2,12 +2,15 @@ package com.gdut.application.handler;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.gdut.application.domain.Admin;
 import com.gdut.application.service.Impl.AdminServiceImpl;
 
 @Controller
@@ -17,25 +20,21 @@ public class MyController {
 	AdminServiceImpl adminService;
 
 	@RequestMapping(value= {"/","/index"})
-	public String index() {
-		
+	public String index(Model model) {
+		model.addAttribute("user",new Admin());
 		return "index";
 	}
 	@ResponseBody
 	@GetMapping("/loginAction")
-	public String login(String username,String password,HttpServletRequest request) {
+	public String login(@Param(value = "username") String username,@Param(value = "password") String password,HttpServletRequest request) {
 		String flag = adminService.checkUser(username,password, request);
-		System.out.println(username);
-		if(flag == "right") {
-			return "index";
-		}else {
-		return "login";
-		}
+		System.out.println("controller"+username);
+		return flag;
 	}
 	
 	@RequestMapping("/success")
 	public String loginSucccess() {
-		return "login";
+		return "success";
 	}
 	
 	@RequestMapping("/user")
