@@ -15,31 +15,32 @@ import com.gdut.application.service.Impl.AdminServiceImpl;
 
 @Controller
 public class MyController {
-	
+
 	@Autowired
 	AdminServiceImpl adminService;
 
-	@RequestMapping(value= {"/","/index"})
+	@RequestMapping(value = { "/", "/index" })
 	public String index(Model model) {
-		model.addAttribute("user",new Admin());
+		model.addAttribute("user", new Admin());
 		return "index";
 	}
+
 	@ResponseBody
 	@GetMapping("/loginAction")
-	public String login(@Param(value = "username") String username,@Param(value = "password") String password,HttpServletRequest request) {
-		String flag = adminService.checkUser(username,password, request);
-		return flag;
+	public String login(@Param(value="username") String username, @Param(value="password") String password,	HttpServletRequest request) {
+		System.out.println("controller");
+		return adminService.checkUser(username, password, request);
 	}
-	
+
 	@RequestMapping("/success")
 	public String loginSucccess() {
 		return "success";
 	}
-	
+
 	@RequestMapping("/user")
-	public String showUser(HttpServletRequest request,String userName) {
-		request.setAttribute("user",adminService.findUser(request));
-		 return "success";
+	public String showUser(HttpServletRequest request, String userName) {
+		request.setAttribute("user", adminService.findUser(request));
+		return "login";
 	}
-	
+
 }

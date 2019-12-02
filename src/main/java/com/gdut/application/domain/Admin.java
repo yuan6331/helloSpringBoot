@@ -1,10 +1,11 @@
 package com.gdut.application.domain;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-@EntityScan
+@Entity
 public class Admin {
-	
+	@Id
 	private String username;
 	private String password;
 	public String getusername() {

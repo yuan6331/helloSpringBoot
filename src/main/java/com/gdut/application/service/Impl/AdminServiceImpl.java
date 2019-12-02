@@ -24,6 +24,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public String checkUser(String username, String password, HttpServletRequest request) {
 		Admin user = adminMapper.checkUser(username);
+		System.out.println("impl");
 		if (username.equals(null) || "".equals(username) || password.equals(null) || "".equals(password)) {
 			return "none";
 		}else if(user==null) {
