@@ -3,11 +3,13 @@ package com.gdut.application.service.Impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.gdut.application.domain.Custom;
 import com.gdut.application.repository.CustomRepository;
 import com.gdut.application.service.CustomService;
 
+@Service
 public class CustomServiceImpl implements CustomService {
 
 	@Autowired

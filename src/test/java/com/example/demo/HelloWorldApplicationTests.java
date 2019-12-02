@@ -34,7 +34,7 @@ public class HelloWorldApplicationTests {
 
 	  @Test
 	    public void testHello() throws Exception {
-	        mockMvc.perform(MockMvcRequestBuilders.get(new URI("/hello")))
+	        mockMvc.perform(MockMvcRequestBuilders.get(new URI("regist")))
 	                .andExpect(MockMvcResultMatchers.status().isOk())
 	                .andDo(MockMvcResultHandlers.print());
 	    }

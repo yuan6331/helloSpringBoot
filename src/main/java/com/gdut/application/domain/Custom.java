@@ -7,44 +7,50 @@ import javax.persistence.Id;
 public class Custom {
 	
 	@Id
-	private int Id;
-	private int CustomNum;
-	private String Password;
-	private String UserName;
+	private int id;
+	private int customId;
+	private String password;
+	private String customName;
 	public int getId() {
-		return Id;
+		return id;
 	}
 	public void setId(int id) {
-		Id = id;
+		this.id = id;
 	}
-	public int getCustomNum() {
-		return CustomNum;
+	public int getcustomId() {
+		return customId;
 	}
-	public void setCustomNum(int customNum) {
-		CustomNum = customNum;
+	public void setcustomId(int customId) {
+		this.customId = customId;
 	}
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
-	public String getUserName() {
-		return UserName;
+	public String getcustomName() {
+		return customName;
 	}
-	public void setUserName(String userName) {
-		UserName = userName;
+	public void setcustomName(String customName) {
+		this.customName = customName;
 	}
-	public Custom(int id, int customNum, String password, String userName) {
+	public Custom(int id, int customId, String password, String customName) {
 		super();
-		Id = id;
-		CustomNum = customNum;
-		Password = password;
-		UserName = userName;
+		this.id = id;
+		this.customId = customId;
+		this.password = password;
+		this.customName = customName;
 	}
 	public Custom() {
 		super();
+	}
+	@Override
+	public String toString() {
+		return "Custom [Id=" + id + ", customId=" + customId + ", Password=" + password + ", customName=" + customName
+				+ "]";
 	} 
+	
 	
 	
 }

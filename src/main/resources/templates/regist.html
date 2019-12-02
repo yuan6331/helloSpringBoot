@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</script>
+<script type="text/javascript">
+	function regist() {
+		var param = {
+			type : "get",
+			url : "http://localhost:8080/loginAction",
+			data : {
+				username : $("#username").val(),
+				password : $("#password").val()
+			},
+			success : function(r) {
+				if (r == 'right') {
+					document.location = 'http://localhost:8080/success';
+				} else if(r=='wrong account') {
+					alert("账号或密码错误 ！")
+				}else if(r=='none'){
+					alert("账号密码不能为空！")
+				}else if(r=='wrong username'){
+					alert('账号不存在！');
+				}
+			}
+		}
+		$.ajax(param);
+	}
+</script>
+</head>
+<body>
+	<center>
+	<form action="#" th:action="@{/regist}" th:object="${custom}"
+		method='get'>
+		<p>
+			ID：<input type="text" th:field="*{id}" />
+		</p>
+		<p>
+			customId：<input type="text" th:field="*{customId}" />
+		</p>
+		<p>
+			password：<input type="text" th:field="*{password}" />
+		</p>
+		<p>
+			userName：<input type="text" th:field="*{userName}" />
+		</p>
+		<p>
+			<input th:type="submit" value="regist"/>
+		</p>
+	</form>
+</center>
+</body>
+</html>
